@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual Care Box</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige: #fdf6ee;
+      --blue-dark: #2a4d69;
+      --blue-light: #4a90e2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #fdf6ee 0%, #dee8f0 100%);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .carebox-container {
+      position: relative;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .carebox-img {
+      width: 100%;
+      display: block;
+    }
+
+    .item {
+      position: absolute;
+      width: 12%;
+      transform: translateY(30px) scale(0.9);
+      opacity: 0;
+      animation: popUp 0.6s ease-out forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    /* Default (laptop) item positions */
+    #item-goku    { top: 22%; left: 15%; z-index: 2; }
+    #item-lindt   { top: 22%; left: 42%; z-index: 2; }
+    #item-cookie  { top: 22%; left: 68%; z-index: 2; }
+
+    #item-tea     { top: 43%; left: 15%; z-index: 2; }
+    #item-ramen   { top: 43%; left: 42%; z-index: 2; }
+    #item-blanket { top: 43%; left: 68%; z-index: 2; }
+
+    #item-card    { top: 63%; left: 15%; z-index: 2; }
+    #item-roses   { top: 63%; left: 42%; z-index: 2; }
+    #item-tissues { top: 63%; left: 68%; z-index: 2; }
+
+
+    @media (max-width: 600px) {
+    .item {
+      width: 20%;
+    }
+
+    .carebox-container {
+      padding: 0 10px; 
+    }
+
+    #item-goku    { top: 10%; left: 10%; }
+    #item-lindt   { top: 10%; left: 40%; }
+    #item-cookie  { top: 10%; left: 70%; }
+
+    #item-tea     { top: 30%; left: 10%; }
+    #item-ramen   { top: 30%; left: 40%; }
+    #item-blanket { top: 30%; left: 70%; }
+
+    #item-card    { top: 55%; left: 15%; }
+    #item-roses   { top: 55%; left: 55%; }
+    #item-tissues { top: 75%; left: 35%; }
+  }
+    /* Popup overlay */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .popup-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 80%;
+      z-index: 11;
+    }
+
+    .popup h2 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-weight: 600;
+    }
+
+    .popup p {
+      margin: 5px 0 15px;
+    }
+
+    .popup button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background: var(--blue-dark);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .popup button:hover {
+      background: var(--blue-light);
+    }
+
+    .item.active {
+      filter: brightness(1.2);
+      z-index: 12; /* Ensure it's above other items */
+    }
+
+    @keyframes popUp {
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+    /* Animation delays per item */
+    #item-goku    { animation-delay: 0.1s; }
+    #item-lindt   { animation-delay: 0.2s; }
+    #item-cookie  { animation-delay: 0.3s; }
+    #item-tea     { animation-delay: 0.4s; }
+    #item-ramen   { animation-delay: 0.5s; }
+    #item-blanket { animation-delay: 0.6s; }
+    #item-card    { animation-delay: 0.7s; }
+    #item-roses   { animation-delay: 0.8s; }
+    #item-tissues { animation-delay: 0.9s; }
+
+  </style>
+</head>
+<body>
+
+  <div class="carebox-container">
+    <img src="carebox.png" alt="Care Box" class="carebox-img" />
+
+    <img src="goku.png"    alt="Goku Plushie" class="item" id="item-goku"
+         data-name="Goku Plushie"
+         data-message="Goku shall energizes you!" />
+    <img src="lindt.png"   alt="Lindt Chocolate" class="item" id="item-lindt"
+         data-name="Lindt Chocolate"
+         data-message="Your fav chocolates, sweet like your smile to melt away that cold." />
+    <img src="cookie.png"  alt="Chocolate Chip Cookies" class="item" id="item-cookie"
+         data-name="Chocolate Chip Cookies"
+         data-message="Warm, gooey, and sweet — just like how I’d cuddle you." />
+    <img src="tea.png"     alt="Indian Tea Cup" class="item" id="item-tea"
+         data-name="Indian Tea"
+         data-message="Made chai for you and coffee for me hehe" />
+    <img src="ichiran.png" alt="Ichiran Ramen Bowl" class="item" id="item-ramen"
+         data-name="Ichiran Ramen"
+         data-message="Duh! Your Fav soup bowl: Slurppp" />
+    <img src="blanket.png" alt="Folded Throw Blanket" class="item" id="item-blanket"
+         data-name="Throw Blanket"
+         data-message="Until I can be your blanket again" />
+    <img src="card.png"    alt="Get Well Soon Card" class="item" id="item-card"
+         data-name="Get Well Soon Card"
+         data-message="Sending you healing vibes!" />
+    <img src="rose.png"    alt="Blue Roses Bouquet" class="item" id="item-roses"
+         data-name="Blue Roses Bouquet"
+         data-message="Vritual flowers till I can get you real ones." />
+    <img src="tissues.png"    alt="Box of tissues" class="item" id="item-tissues"
+         data-name="Tissue Box"
+         data-message="Certified to handle epic nose-drama." />
+  </div>
+
+  <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <h2 id="popup-name"></h2>
+      <p id="popup-message"></p>
+      <button id="popup-close">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.item');
+    const overlay = document.getElementById('popup');
+    const nameEl = document.getElementById('popup-name');
+    const msgEl  = document.getElementById('popup-message');
+    const closeBtn = document.getElementById('popup-close');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        // Remove active from all items
+        items.forEach(i => i.classList.remove('active'));
+
+        // Add to the one clicked
+        item.classList.add('active');
+
+        // Show popup
+        nameEl.textContent = item.dataset.name;
+        msgEl.textContent  = item.dataset.message;
+        overlay.classList.add('active');
+      });
+    });
+
+    // Close popup also clears highlight
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('active');
+      items.forEach(i => i.classList.remove('active'));
+    });
+
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        items.forEach(i => i.classList.remove('active'));
+      }
+    });
+  </script>
+
+</body>
+</html>

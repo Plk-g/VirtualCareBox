@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Well Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #fdf6ee;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .message {
+      max-width: 600px;
+      font-size: 1.5rem;
+      color: #2a4d69;
+      margin-bottom: 2rem;
+    }
+
+    .photos {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .photos img {
+      width: 180px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .open-btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #5e8aa2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .open-btn:hover {
+      background-color: #3e6379;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message">
+    <h1>Hey love,</h1>
+    <p>
+      Since I can't be there to take care of you in person,<br />
+      I made you this little care box full of warmth and hugs.<br />
+      Tap “Open the Box” to unwrap it!
+    </p>
+  </div>
+
+  <div class="photos">
+    <img src="photo1.JPG" alt="us">
+    <img src="photo2.JPG" alt="us2">
+  </div>
+
+  <a href="carebox.html">
+    <button class="open-btn">Open the Box</button>
+  </a>
+
+</body>
+</html>
