@@ -1,0 +1,14 @@
+{
+  "name": "virtual-care-box",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A tiny GitHub Pages virtual care box.",
+  "scripts": {
+    "format": "prettier . --write",
+    "check:format": "prettier . --check",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
